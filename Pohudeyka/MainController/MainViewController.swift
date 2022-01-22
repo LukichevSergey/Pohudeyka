@@ -109,21 +109,6 @@ class MainViewController: UIViewController {
     
     private func configureTabBar() {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)]
-        let segmentBarItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(openPopap))
-        segmentBarItem.tintColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
-        navigationItem.rightBarButtonItem = segmentBarItem
-    }
-    
-    @objc func openPopap() {
-        let popup = PopupView()
-        popup.delegate = self
-        popup.layer.zPosition = 1
-        self.view.addSubview(popup)
-        popup.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.2)
-            make.width.equalToSuperview().multipliedBy(0.7)
-        }
     }
 }
 
@@ -141,7 +126,7 @@ extension MainViewController: MainPresenterToViewProtocol{
                 snapshot.appendItems(data[indexOfSection], toSection: section)
             }
         }
-        dataSource.apply(snapshot, animatingDifferences: true, completion: nil)
+        dataSource.apply(snapshot, animatingDifferences: false, completion: nil)
     }
 }
 
@@ -168,6 +153,18 @@ extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: MainSectionHeaderDelegate {
+    func addResultButtonTapped(forSection section: String) {
+        let popup = PopupView()
+        popup.delegate = self
+        popup.layer.zPosition = 1
+        self.view.addSubview(popup)
+        popup.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.2)
+            make.width.equalToSuperview().multipliedBy(0.7)
+        }
+    }
+    
     func headerTapped(withSection section: String) {
         presenter.headerTapped(withSection: section)
     }

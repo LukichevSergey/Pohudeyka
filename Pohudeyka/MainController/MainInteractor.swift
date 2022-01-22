@@ -39,21 +39,16 @@ class MainInteractor {
                 }
             }
         }
+
+        for i in 0..<arr.count {
+            arr[i].sort(by: {$0.data > $1.data})
+        }
         return arr
     }
     
     private var ref: DatabaseReference!
 
-    var dataEntity: [User] = [
-//        User(name: "Sergey", results: [
-//            User.Result(data: "23.01.2021", weight: 123),
-//            User.Result(data: "24.01.2021", weight: 122),
-//        ]),
-//        User(name: "Andrey", results: [
-//            User.Result(data: "23.01.2021", weight: 98),
-//            User.Result(data: "24.01.2021", weight: 97),
-//        ])
-    ]
+    var dataEntity: [User] = []
 
     // MARK: Properties
     weak var presenter: MainInteractorToPresenterProtocol!

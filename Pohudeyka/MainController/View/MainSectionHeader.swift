@@ -10,6 +10,7 @@ import SnapKit
 
 protocol MainSectionHeaderDelegate: AnyObject {
     func headerTapped(withSection section: String)
+    func addResultButtonTapped(forSection section: String)
 }
 
 class MainSectionHeader: UIView {
@@ -22,6 +23,14 @@ class MainSectionHeader: UIView {
         label.font = UIFont(name: "avenir", size: 20)
         label.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
         return label
+    }()
+    
+    private lazy var addButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+        button.tintColor = .white
+        button.addTarget(self, action: #selector(addResult), for: .touchUpInside)
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -45,6 +54,12 @@ class MainSectionHeader: UIView {
             make.top.bottom.equalToSuperview().inset(12)
             make.left.equalToSuperview().inset(16)
         }
+        
+        addSubview(addButton)
+        addButton.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(12)
+            make.right.equalToSuperview().inset(16)
+        }
     }
     
     func configuration(section: String) {
@@ -57,6 +72,10 @@ class MainSectionHeader: UIView {
 
     @objc func tabTapped() {
         delegate?.headerTapped(withSection: self.userName.text ?? "")
+    }
+    
+    @objc func addResult() {
+        delegate?.addResultButtonTapped(forSection: self.userName.text ?? "")
     }
 }
 
