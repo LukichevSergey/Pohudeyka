@@ -7,39 +7,94 @@
 //
 
 import Foundation
+import UIKit
+import Firebase
 
 // MARK: Protocol - MainPresenterToInteractorProtocol (Presenter -> Interactor)
 protocol MainPresenterToInteractorProtocol: AnyObject {
-    var tableViewData: [[ResultModel]] { get }
     var sections: [String] { get }
+    var dataEntity: [User] { get }
+    var results: [[User.Result]] { get }
     
     func saveButtonTapped(withWeight weight: Double)
+    func fetchUsersData()
 }
 
 class MainInteractor {
     
-    var sections: [String] = ["Сергей", "Андрей"]
+    var sections: [String] {
+        var arr: [String] = []
+        for user in dataEntity {
+            arr.append(user.name)
+        }
+        return arr
+    }
     
-    var tableViewData = [
-        [ResultModel(data: "23.01.2021", weight: 123), ResultModel(data: "24.01.2021", weight: 122)],
-        [ResultModel(data: "23.01.2021", weight: 98), ResultModel(data: "24.01.2021", weight: 97)],
+    var results: [[User.Result]] {
+        var arr: [[User.Result]] = [[], []]
+        for (key, user) in dataEntity.enumerated() {
+            if let results = user.results {
+                for result in results {
+                    arr[key].append(result)
+                }
+            }
+        }
+        return arr
+    }
+    
+    private var ref: DatabaseReference!
+
+    var dataEntity: [User] = [
+//        User(name: "Sergey", results: [
+//            User.Result(data: "23.01.2021", weight: 123),
+//            User.Result(data: "24.01.2021", weight: 122),
+//        ]),
+//        User(name: "Andrey", results: [
+//            User.Result(data: "23.01.2021", weight: 98),
+//            User.Result(data: "24.01.2021", weight: 97),
+//        ])
     ]
 
     // MARK: Properties
     weak var presenter: MainInteractorToPresenterProtocol!
+    
+    func fetchUsersData() {
+//        ref = Database.database().reference(withPath: "users").child(String(user.uid)).child("shopList")
+        ref = Database.database().reference(withPath: "users")
+        ref.observeSingleEvent(of: DataEventType.value, with: { snapshot in
+            if snapshot.exists() {
+                let users = snapshot.value as! NSDictionary
+                for (userName, userResults) in users {
+                    var us = User(name: "\(userName)", results: [])
+                    let userData = userResults as! NSDictionary
+                    for (date,result) in userData {
+                        let resultData = result as! NSDictionary
+                        if let weight = resultData["weight"] {
+                            us.results?.append(User.Result(data: "\(date)", weight: weight as! Double))
+                        }
+                    }
+                    self.dataEntity.append(us)
+                }
+            }
+            self.presenter.usersDataFetched()
+        })
+        
+        
+    }
 
 }
 
 // MARK: Extension - MainPresenterToInteractorProtocol
 extension MainInteractor: MainPresenterToInteractorProtocol {
+    
     func saveButtonTapped(withWeight weight: Double) {
-        let time = NSDate()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd.MM.YYYY"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let formatteddate = formatter.string(from: time as Date)
-        
-        tableViewData[0].append(ResultModel(data: formatteddate, weight: weight))
-        presenter.weightSaved()
+//        let time = NSDate()
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "dd.MM.YYYY"
+//        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+//        let formatteddate = formatter.string(from: time as Date)
+//        
+//        tableViewData[0].append(ResultModel(data: formatteddate, weight: weight))
+//        presenter.weightSaved()
     }
 }

@@ -11,7 +11,7 @@ import SnapKit
 
 // MARK: Protocol - MainPresenterToViewProtocol (Presenter -> View)
 protocol MainPresenterToViewProtocol: AnyObject {
-    func updateTable(withData data: [[ResultModel]], openSections: Set<String>)
+    func updateTable(withData data: [[User.Result]], openSections: Set<String>)
     func appendTableSections(sections: [String])
 }
 
@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var dataSource = UITableViewDiffableDataSource<String, ResultModel>(tableView: tableView) { tableView, indexPath, currentItem in
+    private lazy var dataSource = UITableViewDiffableDataSource<String, User.Result>(tableView: tableView) { tableView, indexPath, currentItem in
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: MainTableViewCell.reuseIdentifier, for: indexPath) as? MainTableViewCell
         else {
@@ -133,8 +133,8 @@ extension MainViewController: MainPresenterToViewProtocol{
         self.sections.append(contentsOf: sections)
     }
     
-    func updateTable(withData data: [[ResultModel]], openSections: Set<String>) {
-        var snapshot = NSDiffableDataSourceSnapshot<String, ResultModel>()
+    func updateTable(withData data: [[User.Result]], openSections: Set<String>) {
+        var snapshot = NSDiffableDataSourceSnapshot<String, User.Result>()
         snapshot.appendSections(self.sections)
         for section in openSections {
             if let indexOfSection = self.sections.firstIndex(of: section) {
@@ -158,6 +158,7 @@ extension MainViewController: MainRouterToViewProtocol{
 
 extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard self.sections.count > 0  else { return UIView() }
         let header = MainSectionHeader()
         header.delegate = self
         header.configuration(section: self.sections[section])

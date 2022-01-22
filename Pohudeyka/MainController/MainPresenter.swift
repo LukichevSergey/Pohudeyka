@@ -18,6 +18,7 @@ protocol MainViewToPresenterProtocol: AnyObject {
 // MARK: Protocol - MainInteractorToPresenterProtocol (Interactor -> Presenter)
 protocol MainInteractorToPresenterProtocol: AnyObject {
     func weightSaved()
+    func usersDataFetched()
 }
 
 class MainPresenter {
@@ -42,18 +43,26 @@ extension MainPresenter: MainViewToPresenterProtocol {
         } else {
             self.openSections.insert(section)
         }
-        view.updateTable(withData: interactor.tableViewData, openSections: openSections)
+        view.updateTable(withData: interactor.results, openSections: openSections)
     }
     
     func viewDidLoad() {
-        view.appendTableSections(sections: interactor.sections)
-        view.updateTable(withData: interactor.tableViewData, openSections: openSections)
+        DispatchQueue.main.async {
+            self.interactor.fetchUsersData()
+        }
     }
 }
 
 // MARK: Extension - MainInteractorToPresenterProtocol
 extension MainPresenter: MainInteractorToPresenterProtocol {
+    func usersDataFetched() {
+        DispatchQueue.main.async {
+            self.view.appendTableSections(sections: self.interactor.sections)
+            self.view.updateTable(withData: self.interactor.results, openSections: self.openSections)
+        }
+    }
+    
     func weightSaved() {
-        view.updateTable(withData: interactor.tableViewData, openSections: openSections)
+//        view.updateTable(withData: interactor.tableViewData, openSections: openSections)
     }
 }

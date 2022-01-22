@@ -33,6 +33,7 @@
 		874C6471279BDC64006AB66C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 874C6470279BDC64006AB66C /* GoogleService-Info.plist */; };
 		874C6474279BDD3A006AB66C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 874C6473279BDD3A006AB66C /* FirebaseDatabase */; };
 		874C6476279BDD3A006AB66C /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 874C6475279BDD3A006AB66C /* FirebaseDatabaseSwift-Beta */; };
+		874C6479279BE46C006AB66C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C6478279BE46C006AB66C /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		874C6466279BC02D006AB66C /* ChartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartInteractor.swift; sourceTree = "<group>"; };
 		874C6467279BC02D006AB66C /* ChartConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartConfigurator.swift; sourceTree = "<group>"; };
 		874C6470279BDC64006AB66C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		874C6478279BE46C006AB66C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 		87292D63279ABBCE00265C83 /* Pohudeyka */ = {
 			isa = PBXGroup;
 			children = (
+				874C6477279BE3FD006AB66C /* Network */,
 				874C6462279BC00F006AB66C /* CartController */,
 				87292D7E279ABE1800265C83 /* MainController */,
 				87292D64279ABBCE00265C83 /* AppDelegate.swift */,
@@ -139,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				87292D97279AC5CA00265C83 /* ResultModel.swift */,
+				874C6478279BE46C006AB66C /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -153,6 +157,13 @@
 				874C6467279BC02D006AB66C /* ChartConfigurator.swift */,
 			);
 			path = CartController;
+			sourceTree = "<group>";
+		};
+		874C6477279BE3FD006AB66C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +267,7 @@
 				87292D85279ABE4400265C83 /* MainRouter.swift in Sources */,
 				87292D87279ABE4400265C83 /* MainInteractor.swift in Sources */,
 				87292D9C279B18F000265C83 /* PopupView.swift in Sources */,
+				874C6479279BE46C006AB66C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

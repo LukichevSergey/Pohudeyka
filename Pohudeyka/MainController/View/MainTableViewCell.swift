@@ -46,7 +46,7 @@ class MainTableViewCell: UITableViewCell {
         }
     }
     
-    func configuration(with model: ResultModel) {
+    func configuration(with model: User.Result) {
         self.backgroundColor = UIColor(red:255/255.0, green:130/255.0, blue:119/255.0, alpha:1.0)
         self.date.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
         self.weight.textColor = UIColor(red: 1, green: 1, blue: 1, alpha: 1.0)
