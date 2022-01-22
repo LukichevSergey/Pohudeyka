@@ -30,6 +30,9 @@
 		874C646B279BC02D006AB66C /* ChartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C6466279BC02D006AB66C /* ChartInteractor.swift */; };
 		874C646C279BC02D006AB66C /* ChartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874C6467279BC02D006AB66C /* ChartConfigurator.swift */; };
 		874C646F279BCC6B006AB66C /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 874C646E279BCC6B006AB66C /* Charts */; };
+		874C6471279BDC64006AB66C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 874C6470279BDC64006AB66C /* GoogleService-Info.plist */; };
+		874C6474279BDD3A006AB66C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 874C6473279BDD3A006AB66C /* FirebaseDatabase */; };
+		874C6476279BDD3A006AB66C /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 874C6475279BDD3A006AB66C /* FirebaseDatabaseSwift-Beta */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +59,7 @@
 		874C6465279BC02D006AB66C /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		874C6466279BC02D006AB66C /* ChartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartInteractor.swift; sourceTree = "<group>"; };
 		874C6467279BC02D006AB66C /* ChartConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartConfigurator.swift; sourceTree = "<group>"; };
+		874C6470279BDC64006AB66C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				874C6474279BDD3A006AB66C /* FirebaseDatabase in Frameworks */,
 				87292D7D279ABBFC00265C83 /* SnapKit in Frameworks */,
+				874C6476279BDD3A006AB66C /* FirebaseDatabaseSwift-Beta in Frameworks */,
 				874C646F279BCC6B006AB66C /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +103,7 @@
 				87292D68279ABBCE00265C83 /* ViewController.swift */,
 				87292D6A279ABBCE00265C83 /* Main.storyboard */,
 				87292D70279ABBCF00265C83 /* Assets.xcassets */,
+				874C6470279BDC64006AB66C /* GoogleService-Info.plist */,
 				87292D72279ABBCF00265C83 /* LaunchScreen.storyboard */,
 				87292D75279ABBCF00265C83 /* Info.plist */,
 				87292D6D279ABBCE00265C83 /* Pohudeyka.xcdatamodeld */,
@@ -167,6 +174,8 @@
 			packageProductDependencies = (
 				87292D7C279ABBFC00265C83 /* SnapKit */,
 				874C646E279BCC6B006AB66C /* Charts */,
+				874C6473279BDD3A006AB66C /* FirebaseDatabase */,
+				874C6475279BDD3A006AB66C /* FirebaseDatabaseSwift-Beta */,
 			);
 			productName = Pohudeyka;
 			productReference = 87292D61279ABBCE00265C83 /* Pohudeyka.app */;
@@ -199,6 +208,7 @@
 			packageReferences = (
 				87292D7B279ABBFC00265C83 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				874C646D279BCC6B006AB66C /* XCRemoteSwiftPackageReference "Charts" */,
+				874C6472279BDD39006AB66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 87292D62279ABBCE00265C83 /* Products */;
 			projectDirPath = "";
@@ -215,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				87292D74279ABBCF00265C83 /* LaunchScreen.storyboard in Resources */,
+				874C6471279BDC64006AB66C /* GoogleService-Info.plist in Resources */,
 				87292D71279ABBCF00265C83 /* Assets.xcassets in Resources */,
 				87292D6C279ABBCE00265C83 /* Main.storyboard in Resources */,
 			);
@@ -484,6 +495,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		874C6472279BDD39006AB66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -496,6 +515,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 874C646D279BCC6B006AB66C /* XCRemoteSwiftPackageReference "Charts" */;
 			productName = Charts;
+		};
+		874C6473279BDD3A006AB66C /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 874C6472279BDD39006AB66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		874C6475279BDD3A006AB66C /* FirebaseDatabaseSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 874C6472279BDD39006AB66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseDatabaseSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 
